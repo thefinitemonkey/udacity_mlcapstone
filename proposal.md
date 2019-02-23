@@ -1,7 +1,7 @@
 # Machine Learning Engineer Nanodegree
 ## Capstone Proposal
-Joe Udacity  
-December 31st, 2050
+Doug Brown  
+February 23, 2019
 
 ## Proposal
 _(approx. 2-3 pages)_
