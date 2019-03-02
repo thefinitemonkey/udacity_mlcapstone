@@ -78,8 +78,10 @@ def fixTestRuntime(df):
     
 def fixLowDollars(df):
     # Some films are showing number like 1.5 for 1500000 so convert those
+    # Find films with a budget larger than 1000 with revenue less than 100
     tomod = df.id[df.budget > 1000][df.revenue < 100]
     
+    # For the identified films multiply the revenue by 1,000,000
     for x in tomod:
         df.loc[df['id'] == x, 'revenue'] = df.loc[df['id'] == x, 'revenue'] * 1000000
         

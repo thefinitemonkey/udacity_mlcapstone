@@ -25,7 +25,7 @@ The dataset and problem are both part of the Kaggle competition available at htt
 This problem will be solved using a Supervised Learning approach. This will allow for use of the historical, known data points and outcomes to create a model with which to predict unknown outcomes for new instances of similarly quantified data. The predictions made for worldwide revenue of each movie in the test dataset will be submitted and judged for accuracy against the known outcomes that are not included in the test data.
 
 ### Benchmark Model
-A Decision Tree model is one that could potentially fit this problem space. Decision trees can fit this type of data very well, and all the data in this set can be made neatly numerical. Each data point is either already represented as a number, or can be transformed to a numeric representation. The decision tree involved here will be done on a higher number of dimensions due to the number of data fields, fitting worldwide revenue as the model output.
+A Regression model is one that could potentially fit this problem space. Regression can fit this type of data very well, and all the data in this set can be made neatly numerical. Each data point is either already represented as a number, or can be transformed to a numeric representation. The decision tree involved here will be done on a higher number of dimensions due to the number of data fields, fitting worldwide revenue as the model output.
 
 ### Evaluation Metrics
 This project will be evaluated on Root Mean Suqred Logarithmic Error between the predicted and actual worldwide revenue predictions. This will prevent blockbuster revenue movies from overweighting the outcomes.
