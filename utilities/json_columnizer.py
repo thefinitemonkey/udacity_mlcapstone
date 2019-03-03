@@ -1,8 +1,10 @@
 import pandas as pd
 import ast
+import time
+from datetime import date
 
 
-def jcolumnize(df, column, prop, prefix, castlimit=False):
+def jcolumnize(df, column, prop, prefix, castlimit=0):
     # Set all null values in the selected column to a string representation of an empty list
     df.loc[df[column].isnull(), column] = '[]'
     # Do an evaluation of the selected column to convert all strings to lists
@@ -18,7 +20,7 @@ def jcolumnize(df, column, prop, prefix, castlimit=False):
         df.loc[df[column].notnull(), column] = df.loc[df[column].notnull(), column].apply(lambda x : [y[prop] for y in x])
     else:
         df.loc[df[column].notnull(), column] = df.loc[df[column].notnull(), column].apply(lambda x :\
-           [y[prop] for y in x if y['order'] < 6])
+           [y[prop] for y in x if y['order'] < castlimit])
         
     # Create a new dataframe to hold all the arrays in the given column and put the values
     # from the column into a list
@@ -56,7 +58,7 @@ def originalLanguage(df, column, prefix):
     #Dedup the list
     tl = list(dict.fromkeys(tl))
     
-    # Create columns from the list items in teh source dataframe and set to default of 0
+    # Create columns from the list items in the source dataframe and set to default of 0
     for item in tl:
         df[prefix + str(item)] = [0 for i in range(df.shape[0])]
         
@@ -107,6 +109,8 @@ def crew_columnize(df, column, prop, crew_type, prefix):
             columnName = prefix + str(y)
             df.at[index, columnName] = 1
             
+    # Drop the intermediate column
+    df = df.drop(crew_type, axis = 1)
     print("Columnized {} shape: {}".format(column, df.shape))
     
     return df
@@ -116,3 +120,27 @@ def columnBooleanize(df, column):
     df.loc[df[column].isnull(), column] = 0
     
     return df
+
+def strToDate(str):
+    # Convert the string date into a date object
+    date_arr = str.split('/')
+    date_arr[0] = int(date_arr[0])
+    date_arr[1] = int(date_arr[1])
+    year = int(date_arr[2])
+    if (year < 30):
+        year += 2000
+    else:
+        year += 1900
+    date_arr[2] = year
+    
+    return date(int(date_arr[2]), int(date_arr[0]), int(date_arr[1]))
+
+def columnizeDates(df, column):
+    df.loc[df[column].notnull(), column] = df.loc[df[column].notnull(), column].apply(lambda x: strToDate(x))
+    df['year'] = [0 for i in range(df.shape[0])]
+    df.loc[df['year'].notnull(), 'year'] = df.loc[df[column].notnull(), column].apply(lambda x: x.timetuple()[0])
+    df['week'] = [0 for i in range(df.shape[0])]
+    df.loc[df['week'].notnull(), 'week'] = df.loc[df[column].notnull(), column].apply(lambda x: x.isocalendar()[1])
+    
+    return df
+    
