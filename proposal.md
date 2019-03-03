@@ -28,7 +28,7 @@ This problem will be solved using a Supervised Learning approach. This will allo
 A Regression model is one that could potentially fit this problem space. Regression can fit this type of data very well, and all the data in this set can be made neatly numerical. Each data point is either already represented as a number, or can be transformed to a numeric representation. The decision tree involved here will be done on a higher number of dimensions due to the number of data fields, fitting worldwide revenue as the model output.
 
 ### Evaluation Metrics
-This project will be evaluated on Root Mean Suqred Logarithmic Error between the predicted and actual worldwide revenue predictions. This will prevent blockbuster revenue movies from overweighting the outcomes.
+This project will be evaluated on Root Mean Squared Logarithmic Error between the predicted and actual worldwide revenue predictions. This will prevent blockbuster revenue movies from overweighting the outcomes.
 
 ### Project Design
 Key to this project will be pre-processing the data. Several of the fields (actors, crew, director, writer, genre) contains comma-separated lists of names. This will make every entry in those columns nearly, or at least largely, unique. The particular parameters are likely to play a large part in determining the success of a particular film, so identifying commonalities will be crucial. I will follow the method outlined at https://datascience.stackexchange.com/questions/14847/multiple-categorical-values-for-a-single-feature-how-to-convert-them-to-binary-u to turn each item in each of those fields into individual columns in the dataset, one-hot encoding them for analysis.
