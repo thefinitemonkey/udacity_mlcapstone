@@ -29,7 +29,9 @@ At a high level, this problem will be approached by
 * Drawing conclusions regarding possible improvements to the model
 
 ### Metrics
-Judging the success of the model will be done using the Kaggle competition metric of Root Mean Log Squared Error. Since we are dealing strictly with financial outcomes (revenue) we can make good comparisons based on the disparity between our predictions and true results. Root mean log squared error will allow for taking a group of predictions and generally evaluating their accuracy again the actual results. No model will ever be perfectly able to predict the outcomes, which would require perfect knowledge of all variables both inside and outside the control of the movie production efforts. However, a model that can provide good, general guidance should be possible, and this metric will let us gauge this model.
+Judging the success of the model will be done using the Kaggle competition metric of Root Mean Log Squared Error. Since we are dealing strictly with financial outcomes (revenue) we can make good comparisons based on the disparity between our predictions and true results. Root mean log squared error will allow for taking a group of predictions and generally evaluating their accuracy again the actual results. Additionally, the Root Mean Square Log Error avoids penalizing large differences between results if the numbers being considered are also large. So small differences between small numbers and large differences between large numbers will be treated similarly.
+
+No model will ever be perfectly able to predict the outcomes, which would require perfect knowledge of all variables both inside and outside the control of the movie production efforts. However, a model that can provide good, general guidance should be possible, and this metric will let us gauge this model.
 
 
 ## II. Analysis
@@ -105,9 +107,11 @@ Since training requires that true outcomes be available in advance, it is import
 2. The models should not have access to the known outcomes while training. It sounds obvious, but is important to keep in mind. The model will make predictions while it is learning and then compare against the known outcomes. This will further inform the models learning, depending on the model used.
 
 ### Benchmark
-In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
-- _Has some result or value been provided that acts as a benchmark for measuring performance?_
-- _Is it clear how this result or value was obtained (whether by data or by hypothesis)?_
+There is no default benchmark value provided for this particular exercise. So creating a benchmark is required to allow comparison as a more complex model is built out.
+
+Using the predetermined linear regression and a custom scorer for Root Mean Square Log Error a model was generated for the unprocessed data. Since this is the scoring mechanism used for the Kaggle competition it is used here as well. As noted earlier, Root Mean Square Log Error prevents large differences between large numbers from being penalized different from smaller differences between smaller numbers. This is important int the context of this data as some films have worldwide revenue of close to $1 billion US.
+
+The best estimator was generated and run against the test data split from the training set. A look at the first 20 results shows that the model predicted several films to have revenues significantly in the negative amounts. The final score from the benchmark modeling was **1.6401099366269307**.
 
 
 ## III. Methodology
