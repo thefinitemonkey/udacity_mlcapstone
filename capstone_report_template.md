@@ -79,14 +79,16 @@ There are also movies within the dataset that are missing revenue, budget, and r
 
 
 ### Exploratory Visualization
-In this section, you will need to provide some form of visualization that summarizes or extracts a relevant characteristic or feature about the data. The visualization should adequately support the data being used. Discuss why this visualization was chosen and how it is relevant. Questions to ask yourself when writing this section:
-- _Have you visualized a relevant characteristic or feature about the dataset or input data?_
-- _Is the visualization thoroughly analyzed and discussed?_
-- _If a plot is provided, are the axes, title, and datum clearly defined?_
 
-Without pre-processing the data, there are only four attributes that can be visually analyzed. These are the budget, popularity, runtime, and revenue for each film.
+Without pre-processing the data, there is very little data that can be visually analyzed. A quick pairplot on the following will let us see if there might be any strength between:
+* budget
+* popularity
+* runtime
+* revenue
 
 ![](https://github.com/thefinitemonkey/udacity_mlcapstone/blob/master/images/pairplot.png)
+
+It does appear that there may be a linear correlation between the budget and revenue. This intuitively seems reasonable, as a film with a higher budget might generally be thought of as having a higher quality. It also appears that there may be a correlation between the runtime and revenue. This takes more the shape of a bell curve however. Films around two hours appear to generally do best in terms of revenue, falling off on either side of that. Popularity and revenue seem to have very little interaction however.
 
 ### Algorithms and Techniques
 In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
