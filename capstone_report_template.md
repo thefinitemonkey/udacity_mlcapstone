@@ -146,13 +146,47 @@ As these transformations are completed the source attributes will be dropped fro
 
 Some of these attributes could be one-hot encoded but are anticipated to be noise given their correlation to marketing activities rather than the actual production of the films.
 
+There are also films with missing data points. These are manually inserted into the data to make sure the predictive data is complete.
+
 Once all of this preprocessing is complete, it results in a dataset that has a shape of (3000, 25270). This is a very wide dataset!
 
 ### Implementation
-In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
-- _Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?_
-- _Were there any complications with the original metrics or techniques that required changing prior to acquiring a solution?_
-- _Was there any part of the coding process (e.g., writing complicated functions) that should be documented?_
+Multiple function needed to be created to pre-process the data for analysis. The most complicated were related to the columns that used strings to represent arrays of object data. Originally the intent was to use a method described at https://datascience.stackexchange.com/questions/14847/multiple-categorical-values-for-a-single-feature-how-to-convert-them-to-binary-u. However, this was quickly found to not work with the particular representation of this data and had to be discarded.
+
+A custom function, in the json_columnizer.py file and named _jcolumnize_ was written to handle the encoding of most of these types of attributes. Parameters for this function were the dataframe, the column (attribute) to be encoded, which property of the object to use as the encoded value, the label prefix for encoding, and a castlimit value. This last parameter was used for the cast attribute and allowed for controlling how many cast members to encode from each film. The following steps were then required in the function:
+* Select all rows where the identified column might have a null value and set them to the string "[]", representing an empty array
+* Perform a literal evaluation on every row in that column to turn the string into an actual array of object data
+* Create a copy of of the selected column and iterate over it to create a list of all the objects in all the arrays
+* Dedup the items in the new list
+* Create new columns in the dataframe for each item in the list, using the prefix and property parameter values, setting their values to 0 for all rows by default
+* Iterate over all the rows in the dataframe and encode the values into the appropriate attributes
+
+Encoding the crew and original language values were then separate functions that were a variation on this theme. Particularly for crew, the ability to specify which crew position was desired needed to be provided.
+
+Encoding values that were to become booleans was far simpler. For all rows in the specified column where the value was not null the value was transformed to 1. Then all rows in the specified column where the value was null the value was set to 0.
+
+Transforming the date required creation of a columnizeDates function with a strToDate helper function.
+* Receive the dataframe and specified column as parameters
+* Call the helper function to convert date strings in the specified column into proper date values
+  * Since these were two-digit dates, assume any number < 30 should be converted to 20xx and number > 30 should convert to 19xx
+* Create a year attribute and set all values to 0 by default
+* Use the timtuple() of the date to set the year for each row
+* Create a week attribute and set all values to 0 by default
+* Use the isocalendar() of the date to set the week for each row
+
+Some additional functions were also written to automate upating the missing attributes for some rows in the dataset.
+
+Even with all of that done, there were still some value errors that occurred. So a final quality check function was put in place. This takes an array of column labels to make sure all the original source columns have been purged. Then all data is checked to make sure no un-transformed strings, lists, dicts, or tuples have been left behind. This step assured that the data used for modeling would be clean and of a format that could be processed by the regression algorithms.
+
+Once the data was ready, training and testing sets were created using a train_test_split. The split size was 20% for testing, 80% for training. A Root Mean Square Log Error function was added (called _rmsle_ in the code) for use as a scoring function. A function for fitting the model (_fit_model_ in the code) was also created to do the following:
+* Create cross-validation sets
+* Initialize a Decision Tree regressor
+* Set parameters (max_depth with a range of 1-20 for starters based on the number of columns in the dataset)
+* Create the scorer with _make_scorer_
+* Create a GridSearchCV to find the best model fit among the parameters
+* Fit the grid and return the best estimator
+
+At this point the model was generated, with a best max_depth of 19. From here predictions against the test set were retrieved and the _rmsle_ was used to score the predictions against the real outcomes. The final score was **2.383488886396367**, considerably worse than the baseline achieved with linear regression.
 
 ### Refinement
 In this section, you will need to discuss the process of improvement you made upon the algorithms and techniques you used in your implementation. For example, adjusting parameters for certain models to acquire improved solutions would fall under the refinement category. Your initial and final solutions should be reported, as well as any significant intermediate results as necessary. Questions to ask yourself when writing this section:
