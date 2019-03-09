@@ -91,10 +91,18 @@ Without pre-processing the data, there is very little data that can be visually 
 It does appear that there may be a linear correlation between the budget and revenue. This intuitively seems reasonable, as a film with a higher budget might generally be thought of as having a higher quality. It also appears that there may be a correlation between the runtime and revenue. This takes more the shape of a bell curve however. Films around two hours appear to generally do best in terms of revenue, falling off on either side of that. Popularity and revenue seem to have very little interaction however.
 
 ### Algorithms and Techniques
-In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
-- _Are the algorithms you will use, including any default variables/parameters in the project clearly defined?_
-- _Are the techniques to be used thoroughly discussed and justified?_
-- _Is it made clear how the input data or datasets will be handled by the algorithms and techniques chosen?_
+I will be using two different types of regression models for this analysis. The first will be a Linear Regression and will be used to obtain a benchmark. The second is a Decision Tree and will be used for more complex modeling. In both cases a shuffle split will be used for training purposes.
+
+#### Linear Regression
+This is a linear approach to modeling relationships between the dependent variable, in this case revenue, and one or more independent variables. These relationship are modeled using linear predictor function where the model parameters are estimated from the data provided. The model focuses on conditional probability distribution of responses given the data provided. This is useful for prediction with a smaller set of numeric data, which is what we have in the unprocessed dataset.
+
+#### Decision Tree
+Decision tree models build regressions in the form of a tree structure. The dataset is broken into incrementally smaller subsets, which informs the incremental development of the questions that make up the tree. The tree itself is then comprised of _decision nodes_ and _leaf nodes_. Each decision node will have two or more branches, each of which will lead to either another decision node or a leaf node. The leaf nodes represent final determinations made by the model based on the data provided.
+
+#### Shuffle Split
+Since training requires that true outcomes be available in advance, it is important to split the data into training and testing sets and to separate the known outcomes from the predictive data. This does two things:
+1. It prevents the model from memorizing all the data and not generalizing the model well. This is known as over-fitting.
+2. The models should not have access to the known outcomes while training. It sounds obvious, but is important to keep in mind. The model will make predictions while it is learning and then compare against the known outcomes. This will further inform the models learning, depending on the model used.
 
 ### Benchmark
 In this section, you will need to provide a clearly defined benchmark result or threshold for comparing across performances obtained by your solution. The reasoning behind the benchmark (in the case where it is not an established result) should be discussed. Questions to ask yourself when writing this section:
