@@ -86,7 +86,7 @@ In this section, you will need to provide some form of visualization that summar
 
 Without pre-processing the data, there are only four attributes that can be visually analyzed. These are the budget, popularity, runtime, and revenue for each film.
 
-[(https://github.com/thefinitemonkey/udacity_mlcapstone/blob/master/images/pairplot.png)]
+![](https://github.com/thefinitemonkey/udacity_mlcapstone/blob/master/images/pairplot.png)
 
 ### Algorithms and Techniques
 In this section, you will need to discuss the algorithms and techniques you intend to use for solving the problem. You should justify the use of each one based on the characteristics of the problem and the problem domain. Questions to ask yourself when writing this section:
