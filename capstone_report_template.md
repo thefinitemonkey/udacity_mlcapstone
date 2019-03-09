@@ -123,6 +123,10 @@ In this section, all of your preprocessing steps will need to be clearly documen
 - _Based on the **Data Exploration** section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?_
 - _If no preprocessing is needed, has it been made clear why?_
 
+As noted earlier, there are several attributes that are arrays of objects stored as a JSON style string. All of these will need to be pre-processed. Effectively the ids for each will be one-hot encoded.
+* genres: Will be encoded into new attributes labeled as #genres_X# where _X_ is the id of the genre
+* production_companies: Will be encoded into new attributes labeled as #pcomp_X# where _X_ is the id of the company
+
 ### Implementation
 In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
 - _Is it made clear how the algorithms and techniques were implemented with the given datasets or input data?_
