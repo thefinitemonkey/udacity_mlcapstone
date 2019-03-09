@@ -8,12 +8,14 @@ March 9, 2019
 ### Project Overview
 This project originates from a Kaggle challenge that is available at https://www.kaggle.com/c/tmdb-box-office-prediction
 
-The entertainment industry is regularly creating new content. This is a heavy investment, with the businesses making them continually seeking ways to optimize their returns. Using predictive analytics is one way that this can be approached. The amount of data available to entertainment businesses for each property they create is vast, so if they can reach into that data and determine winning formulas they may be able to improve their revenue.
+The entertainment industry is regularly creating new content. This is a heavy investment, with the businesses producing the content continually seeking ways to optimize their returns. Using predictive analytics is one way companies are using to help refine their decision making processes. The amount of data available to entertainment businesses for each property they create is vast, so if they can reach into that data and determine winning formulas they may be able to improve their revenue.
 
 Netflix is a perfect example of this type of behavior. Based on their user's viewing habits they determined that their audience had high preferences for certain actors, writers, directors, and genres. As an experiment with their data they took this information and put a specific selection of individuals from these areas together to create a show. There was no concept for the show, just the desire to get a particular combination of people together with the expectation, based on the analytics, that the results would be a hit. From that experiment the series _House of Cards_ was produced.
 
+For this project there will be work done to see if similar insights can be made regarding movies produced and distributed through theaters. This is a global market that all movie makers are continually seeking to create greater reach in terms of audience and revenue, and the public domain data available for this kind of exercise is considerable.
+
 ### Problem Statement
-The quesion then is, given all the relevant, historical data for a selection of movies, can a model be created that can predict the performance of other films based on similar data. Performance in this case is measured by box office revenue, which is the true metric by which studios measure the success of their products.
+The quesion then is, given all the relevant, historical data for a selection of movies, can a model be created for predicting the performance of other films based on similar data. Performance in this case is measured by box office revenue, which is the true metric by which studios measure the success of their products.
 
 From the Kaggle competition a dataset of movies is made available. There are ~3000 movies in the dataset that crosses years, genres, countries, languages, directors, actors, and practically every other descriptive data related to each film. Ideally, a model can be constructed that can consider these factors and use them to make a well-educated guess about the likely revenue for a film.
 
@@ -21,7 +23,7 @@ At a high level, this problem will be approached by
 * Acquiring the data
 * Doing any necessary pre-processing of the data
 * Splitting the data into training and testing sets
-* Developing the model
+* Developing the model based on predicting revenue
 * Training the model using the training dataset
 * Evaluating the model using the testing dataset
 * Drawing conclusions regarding possible improvements to the model
