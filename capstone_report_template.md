@@ -118,14 +118,35 @@ The best estimator was generated and run against the test data split from the tr
 _(approx. 3-5 pages)_
 
 ### Data Preprocessing
-In this section, all of your preprocessing steps will need to be clearly documented, if any were necessary. From the previous section, any of the abnormalities or characteristics that you identified about the dataset will be addressed and corrected here. Questions to ask yourself when writing this section:
-- _If the algorithms chosen require preprocessing steps like feature selection or feature transformations, have they been properly documented?_
-- _Based on the **Data Exploration** section, if there were abnormalities or characteristics that needed to be addressed, have they been properly corrected?_
-- _If no preprocessing is needed, has it been made clear why?_
-
 As noted earlier, there are several attributes that are arrays of objects stored as a JSON style string. All of these will need to be pre-processed. Effectively the ids for each will be one-hot encoded.
 * genres: Will be encoded into new attributes labeled as _genres_X_ where _X_ is the id of the genre
 * production_companies: Will be encoded into new attributes labeled as _pcomp_X_ where _X_ is the id of the company
+* production_countries: Will be encoded into new attributes labeled as _pcoun_X_ where _X_ is the id of the country
+* spoken_languages: Will be encoded into new attributes labeled as _spoken_X_ where _X_ is the id of the language
+* Keywords: Will be encoded into new attributes labeled as _key_X_ where _X_ is the id of the keyword
+* cast: Will be encoded into new attributes labeled as _cast_X_ where _X_ is the id of the actor / actress
+* crew: Will be encoded into multiple new attributes:
+  * Director will be encoded as _director_X_ where _X_ is the id of the director
+  * Executive Producer will be encoded as _execprod_X_ where _X_ is the id of the executive producer
+
+Other attributes will be encoded into booleans, based on whether there is any data on that attribute provided for a movie:
+* belongs_to_collection
+* homepage
+
+The date attribute will be encoded into two new attributes, _year_ and _week_.
+
+As these transformations are completed the source attributes will be dropped from the dataset. Other attributes to be dropped from the outset are:
+* imdb_id
+* poster_path
+* original_title
+* overview
+* status
+* tagline
+* title
+
+Some of these attributes could be one-hot encoded but are anticipated to be noise given their correlation to marketing activities rather than the actual production of the films.
+
+Once all of this preprocessing is complete, it results in a dataset that has a shape of (3000, 25270). This is a very wide dataset!
 
 ### Implementation
 In this section, the process for which metrics, algorithms, and techniques that you implemented for the given data will need to be clearly documented. It should be abundantly clear how the implementation was carried out, and discussion should be made regarding any complications that occurred during this process. Questions to ask yourself when writing this section:
