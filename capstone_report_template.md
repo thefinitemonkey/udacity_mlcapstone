@@ -1,26 +1,33 @@
 # Machine Learning Engineer Nanodegree
 ## Capstone Project
-Joe Udacity  
-December 31st, 2050
+Doug Brown  
+March 9, 2019
 
 ## I. Definition
-_(approx. 1-2 pages)_
 
 ### Project Overview
-In this section, look to provide a high-level overview of the project in layman’s terms. Questions to ask yourself when writing this section:
-- _Has an overview of the project been provided, such as the problem domain, project origin, and related datasets or input data?_
-- _Has enough background information been given so that an uninformed reader would understand the problem domain and following problem statement?_
+This project originates from a Kaggle challenge that is available at https://www.kaggle.com/c/tmdb-box-office-prediction
+
+The entertainment industry is regularly creating new content. This is a heavy investment, with the businesses making them continually seeking ways to optimize their returns. Using predictive analytics is one way that this can be approached. The amount of data available to entertainment businesses for each property they create is vast, so if they can reach into that data and determine winning formulas they may be able to improve their revenue.
+
+Netflix is a perfect example of this type of behavior. Based on their user's viewing habits they determined that their audience had high preferences for certain actors, writers, directors, and genres. As an experiment with their data they took this information and put a specific selection of individuals from these areas together to create a show. There was no concept for the show, just the desire to get a particular combination of people together with the expectation, based on the analytics, that the results would be a hit. From that experiment the series _House of Cards_ was produced.
 
 ### Problem Statement
-In this section, you will want to clearly define the problem that you are trying to solve, including the strategy (outline of tasks) you will use to achieve the desired solution. You should also thoroughly discuss what the intended solution will be for this problem. Questions to ask yourself when writing this section:
-- _Is the problem statement clearly defined? Will the reader understand what you are expecting to solve?_
-- _Have you thoroughly discussed how you will attempt to solve the problem?_
-- _Is an anticipated solution clearly defined? Will the reader understand what results you are looking for?_
+The quesion then is, given all the relevant, historical data for a selection of movies, can a model be created that can predict the performance of other films based on similar data. Performance in this case is measured by box office revenue, which is the true metric by which studios measure the success of their products.
+
+From the Kaggle competition a dataset of movies is made available. There are ~3000 movies in the dataset that crosses years, genres, countries, languages, directors, actors, and practically every other descriptive data related to each film. Ideally, a model can be constructed that can consider these factors and use them to make a well-educated guess about the likely revenue for a film.
+
+At a high level, this problem will be approached by
+* Acquiring the data
+* Doing any necessary pre-processing of the data
+* Splitting the data into training and testing sets
+* Developing the model
+* Training the model using the training dataset
+* Evaluating the model using the testing dataset
+* Drawing conclusions regarding possible improvements to the model
 
 ### Metrics
-In this section, you will need to clearly define the metrics or calculations you will use to measure performance of a model or result in your project. These calculations and metrics should be justified based on the characteristics of the problem and problem domain. Questions to ask yourself when writing this section:
-- _Are the metrics you’ve chosen to measure the performance of your models clearly discussed and defined?_
-- _Have you provided reasonable justification for the metrics chosen based on the problem and solution?_
+Judging the success of the model will be done using the Kaggle competition metric of Root Mean Log Squared Error. Since we are dealing strictly with financial outcomes (revenue) we can make good comparisons based on the disparity between our predictions and true results. Root mean log squared error will allow for taking a group of predictions and generally evaluating their accuracy again the actual results. No model will ever be perfectly able to predict the outcomes, which would require perfect knowledge of all variables both inside and outside the control of the movie production efforts. However, a model that can provide good, general guidance should be possible, and this metric will let us gauge this model.
 
 
 ## II. Analysis
