@@ -194,6 +194,19 @@ In this section, you will need to discuss the process of improvement you made up
 - _Is the process of improvement clearly documented, such as what techniques were used?_
 - _Are intermediate and final solutions clearly reported as the process is improved?_
 
+|4 |3.0323020722497644
+|10 |2.383488886396367
+|20 |2.377367680621276
+|40 |2.3225570929010173
+
+Optimal max_depth was 29
+
+    params = {'max_depth': [30, 40, 50, 60, 80, 100], 'min_samples_split': [2, 4, 8, 16, 32, 64, 128], \
+              'max_features': [10, 20, 40, 80, 100, 200, 400, 800, 1000]}
+    max_depth = 100
+    max_features = 1000
+    min_samples_split = 32
+
 
 ## IV. Results
 _(approx. 2-3 pages)_
