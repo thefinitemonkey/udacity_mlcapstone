@@ -225,8 +225,12 @@ Optimal max_depth was 29
     score = 2.153853569439121
 
 
-
-
+    params = {'max_depth': [850, 860, 870, 880, 890, 900], 'min_samples_split': [32, 64, 70, 75, 80], \
+              'max_features': [7000, 7250, 7500, 7750, 8000]}
+    max_depth = 880
+    max_features = 8000
+    min_samples_split = 64
+    score = 2.153772540838531
 
 ## IV. Results
 _(approx. 2-3 pages)_
