@@ -216,7 +216,16 @@ Optimal max_depth was 29
     min_samples_split = 64
     score = 2.162784944429385
 
-    
+
+    params = {'max_depth': [800, 850, 900, 950, 1000], 'min_samples_split': [64, 80, 96, 112, 128], \
+              'max_features': [4000, 5000, 6000, 7000, 8000]}
+    max_depth = 850
+    max_features = 7000
+    min_samples_split = 64    
+    score = 2.153853569439121
+
+
+
 
 
 ## IV. Results
