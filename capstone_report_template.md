@@ -194,10 +194,12 @@ In this section, you will need to discuss the process of improvement you made up
 - _Is the process of improvement clearly documented, such as what techniques were used?_
 - _Are intermediate and final solutions clearly reported as the process is improved?_
 
-|4 |3.0323020722497644
-|10 |2.383488886396367
-|20 |2.377367680621276
-|40 |2.3225570929010173
+max_depth | score
+--- | ---
+4 | 3.0323020722497644
+10 | 2.383488886396367
+20 | 2.377367680621276
+40 | 2.3225570929010173
 
 Optimal max_depth was 29
 
