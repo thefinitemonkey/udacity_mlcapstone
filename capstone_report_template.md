@@ -194,6 +194,8 @@ In this section, you will need to discuss the process of improvement you made up
 - _Is the process of improvement clearly documented, such as what techniques were used?_
 - _Are intermediate and final solutions clearly reported as the process is improved?_
 
+The model was implemented with a GridSearchCV to allow for controlling multiple parameters and testing their various combinations. For an initial look at results I check only max_depth on the decision tree regressor, with all other parameters left as default. The max_depth parameter seemed the best place to start as it controls the number of decision points, or questions asked, by the model. The first max_depth tested was for a range of 1..4, which yielded a result of 3.023. Successive tests were made with other ranges of 1..n.
+
 max_depth | score
 --- | ---
 4 | 3.0323020722497644
@@ -201,46 +203,70 @@ max_depth | score
 20 | 2.377367680621276
 40 | 2.3225570929010173
 
-Optimal max_depth was 29
+Diving further into max_depth ended at an upper limit of 40 as that test showed the optimal max_depth was 29. My expectation had been that this number would wind up much higher given there being over 25,000 columns in the dataset. At this point I began adding other parametric combinations, all based on max_depth, min_samples_split, and max_features. Using min_samples_split seemed a good addition as it controlled the minimum number of samples required create a branch in the decision tree. And max_features also seemed good to use since it controlled how many feature would be considered in the formation of a branch. Again, given the number of columns involved, parameters that would break the dataset into more generalized (and smaller) chunks for decision branching seemed a good strategy.
 
-    params = {'max_depth': [30, 40, 50, 60, 80, 100], 'min_samples_split': [2, 4, 8, 16, 32, 64, 128], \
-              'max_features': [10, 20, 40, 80, 100, 200, 400, 800, 1000]}
-    max_depth = 100
-    max_features = 1000
-    min_samples_split = 32
-    score = 2.3
+**Test 1**
+The following parameters:
+* max_depth: [30, 40, 50, 60, 80, 100]
+* min_samples_split: [2, 4, 8, 16, 32, 64, 128]
+* max_features: [10, 20, 40, 80, 100, 200, 400, 800, 1000]
+
+Yielded results of:
+* max_depth = 100
+* min_samples_split = 32
+* max_features = 1000
+* score = **2.3** (trailing decimals were lost due to human error)
+
+**Test 2**
+The following parameters:
+* max_depth: [60, 80, 100, 200, 400, 800, 1000]
+* min_samples_split: [2, 4, 8, 16, 32, 64, 128]
+* max_features: [100, 200, 400, 800, 1000, 2000, 4000, 8000]
+
+Yielded results of:
+* max_depth = 800
+* min_samples_split = 64
+* max_features = 4000
+* score = **2.162784944429385**
+
+**Test 3**
+The following parameters:
+* max_depth: [800, 850, 900, 950, 1000]
+* min_samples_split: [64, 80, 96, 112, 128]
+* max_features: [4000, 5000, 6000, 7000, 8000]
+
+Yielded results of:
+* max_depth = 850
+* min_samples_split = 64
+* max_features = 7000
+* score = **2.153853569439121** (trailing decimals were lost due to human error)
+
+**Test 4**
+The following parameters:
+* max_depth: [850, 860, 870, 880, 890, 900]
+* min_samples_split: [32, 64, 70, 75, 80]
+* max_features: [7000, 7250, 7500, 7750, 8000]
+
+Yielded results of:
+* max_depth = 880
+* min_samples_split = 64
+* max_features = 7750
+* score = **2.153772540838531** (trailing decimals were lost due to human error)
 
 
-    params = {'max_depth': [60, 80, 100, 200, 400, 800, 1000], 'min_samples_split': [2, 4, 8, 16, 32, 64, 128], \
-          'max_features': [100, 200, 400, 800, 1000, 2000, 4000, 8000]}
-    max_depth = 800
-    max_features = 4000
-    min_samples_split = 64
-    score = 2.162784944429385
+**Test 5**
+The following parameters:
+* max_depth: [880, 885, 890, 895, 900]
+* min_samples_split: [32, 64, 70]
+* max_features: [7500, 7750, 8000, 8250, 8500, 8750, 9000]
 
+Yielded results of:
+* max_depth = 890
+* min_samples_split = 64
+* max_features = 7750
+* score = **2.231314536362172** (trailing decimals were lost due to human error)
 
-    params = {'max_depth': [800, 850, 900, 950, 1000], 'min_samples_split': [64, 80, 96, 112, 128], \
-              'max_features': [4000, 5000, 6000, 7000, 8000]}
-    max_depth = 850
-    max_features = 7000
-    min_samples_split = 64    
-    score = 2.153853569439121
-
-
-    params = {'max_depth': [850, 860, 870, 880, 890, 900], 'min_samples_split': [32, 64, 70, 75, 80], \
-              'max_features': [7000, 7250, 7500, 7750, 8000]}
-    max_depth = 880
-    max_features = 8000
-    min_samples_split = 64
-    score = 2.153772540838531
-
-
-    params = {'max_depth': [880, 885, 890, 895, 900], 'min_samples_split': [32, 64, 70], \
-              'max_features': [7500, 7750, 8000, 8250, 8500, 8750, 9000]}
-    max_depth = 890
-    max_features = 7750
-    nim_samples_split = 64
-    score = 2.231314536362172
+The min_samples_split had quickly settled in at 64, while max_depth and max_features continued to drive incremental improvements as they were allowed to grow until Test 5. With the parameters in Test 5 the score became worse, which is unexpected and requires more investigation to verify.
 
 ## IV. Results
 _(approx. 2-3 pages)_
