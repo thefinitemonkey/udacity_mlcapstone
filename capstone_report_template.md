@@ -215,7 +215,7 @@ Yielded results of:
 * max_depth = 100
 * min_samples_split = 32
 * max_features = 1000
-* score = **2.3** (trailing decimals were lost due to human error)
+* score = **2.3262091514997207**
 
 **Test 2**
 The following parameters:
@@ -256,15 +256,15 @@ Yielded results of:
 
 **Test 5**
 The following parameters:
-* max_depth: [880, 885, 890, 895, 900]
-* min_samples_split: [32, 64, 70]
+* max_depth: [880, 885, 890, 895, 900, 905, 910]
+* min_samples_split: [32, 64, 70, 102, 128]
 * max_features: [7500, 7750, 8000, 8250, 8500, 8750, 9000]
 
 Yielded results of:
-* max_depth = 890
-* min_samples_split = 64
-* max_features = 7750
-* score = **2.231314536362172**
+* max_depth = 900
+* min_samples_split = 70
+* max_features = 8750
+* score = **2.1607568160810113**
 
 The min_samples_split had quickly settled in at 64, while max_depth and max_features continued to drive incremental improvements as they were allowed to grow until Test 5. With the parameters in Test 5 the score became worse, which is unexpected and requires more investigation to verify.
 
