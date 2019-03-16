@@ -2,6 +2,15 @@
 ## Specializations
 ## Project: Capstone Proposal and Capstone Project
 
+**Doug Brown**
+_Kaggle Challenge for Predicting Movie Revenue_
+
+The proposal for this project is found in **proposal.pdf**
+
+The report for this project is found in **report.pdf**
+
+All data files, images, and Python code files are included in this project repository. The entire project is built using Jupyter Notebook.
+
 **Note**
 
 The Capstone is a two-staged project. The first is the proposal component, where you can receive valuable feedback about your project idea, design, and proposed solution. This must be completed prior to your implementation and submitting for the capstone project. 
