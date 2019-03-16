@@ -269,7 +269,6 @@ Yielded results of:
 The min_samples_split had quickly settled in at 64, while max_depth and max_features continued to drive incremental improvements as they were allowed to grow until Test 5.
 
 ## IV. Results
-_(approx. 2-3 pages)_
 
 ### Model Evaluation and Validation
 Refinements stopped at Test 5. While additional refinement may be possible, that the score increased slightly at this point is an indication that the sensitivity had reached a point that changes in the training data were beginning to reflect in the score. This was illustrated by the score ticking up slightly. The parameters seem appropriate for the number of columns in the dataset.
@@ -309,12 +308,29 @@ In this section, you will need to provide some form of visualization that emphas
 - _Is the visualization thoroughly analyzed and discussed?_
 - _If a plot is provided, are the axes, title, and datum clearly defined?_
 
+**Create a visualization showing the number of columns associated with each of the original data object columns**
+
 ### Reflection
-In this section, you will summarize the entire end-to-end problem solution and discuss one or two particular aspects of the project you found interesting or difficult. You are expected to reflect on the project as a whole to show that you have a firm understanding of the entire process employed in your work. Questions to ask yourself when writing this section:
-- _Have you thoroughly summarized the entire process you used for this project?_
-- _Were there any interesting aspects of the project?_
-- _Were there any difficult aspects of the project?_
-- _Does the final model and solution fit your expectations for the problem, and should it be used in a general setting to solve these types of problems?_
+
+This project involved:
+* Gathering the necessary data for analysis
+* Reviewing the data for cleanliness
+* Planning how to clean bad / incorrect data
+* Planning how to pre-process data for best representation in modeling
+* Writing all the functions to manage pre-processing in a reusable fashion
+* Executing the pre-processing
+* Identifying a baseline model to use as a target for improvement
+* Developing a target model for learning
+* Refining the parameters of the model, and doing so in a way that would be optimized for performance
+* Reviewing model results and refining further
+
+Writing all the function for pre-processing was by far the most difficult aspect of the project, at least at first. There were some complex transmutations of the data that needed to take place on several of the columns before modeling could be done. For someone more adept with Python this may have been a much more trivial exercise, but that was not the case for me.
+
+The modeling itself required some patience and experimentation. There was a point where I realized that the parameters I was testing in a Grid Search would actually take weeks to run, and that I would need to make more targeted adjustments to refine parameters. This was much more informative about the direction those adjustments should take and accelerated the process significantly, with the tradeoff being that it required a more attentive eye.
+
+The hardest part in the end though was acknowleding that the Decision Tree model approach I had set out to use as the solution was poor. While there are adjustments that could be made, the Decision Tree likely just isn't the right approach to take.
+
+
 
 ### Improvement
 In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
