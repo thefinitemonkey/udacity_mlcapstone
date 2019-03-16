@@ -300,15 +300,14 @@ While a wider dataset produces more accurate results for the Decision Tree due t
 
 
 ## V. Conclusion
-_(approx. 1-2 pages)_
 
 ### Free-Form Visualization
-In this section, you will need to provide some form of visualization that emphasizes an important quality about the project. It is much more free-form, but should reasonably support a significant result or characteristic about the problem that you want to discuss. Questions to ask yourself when writing this section:
-- _Have you visualized a relevant or important quality about the problem, dataset, input data, or results?_
-- _Is the visualization thoroughly analyzed and discussed?_
-- _If a plot is provided, are the axes, title, and datum clearly defined?_
 
-**Create a visualization showing the number of columns associated with each of the original data object columns**
+![](https://github.com/thefinitemonkey/udacity_mlcapstone/blob/master/images/h_bar.png)
+
+This visualization illustrates the number of unique columns / values associated with primary attributes of the movie data. For cast members it must be kept in mind that this modeling only considered the top four billed cast members of each film. So the true number for this attribute is certainly much higher. Other attributes, such as description, were not considered in the modeling at all and would have created many additional values.
+
+Each of these values represents a possible desicion point for the Decision Tree. All this data could either be rich in terms of decision value, or could actually be a source of noise and adding confusion to the model. Each seems like they should be important, but considering that several of these items have more values than the actual number of movies in the dataset it could be problematic.
 
 ### Reflection
 
