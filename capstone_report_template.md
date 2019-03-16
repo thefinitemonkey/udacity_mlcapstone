@@ -273,7 +273,7 @@ The min_samples_split had quickly settled in at 64, while max_depth and max_feat
 ### Model Evaluation and Validation
 Refinements stopped at Test 5. While additional refinement may be possible, that the score increased slightly at this point is an indication that the sensitivity had reached a point that changes in the training data were beginning to reflect in the score. This was illustrated by the score ticking up slightly. The parameters seem appropriate for the number of columns in the dataset.
 
-Each refinement run of the model used a randomized testing set, so another full run of Test 5 was performed and resulted in a score of **score**, further validating the perturbations caused by the training data.
+Each refinement run of the model used a randomized testing set, so another full run of Test 5 was performed and resulted in *max_features* being **7500** with a _score_ of **2.206622088390178**, further validating the perturbations caused by the training data.
 
 Generally speaking, it does not seem that the results from this model can be trusted. While the parameters and model seem reasonable on the surface, the results are not what should be expected. A score of 2.16 shows a fairly large degree of variability. The best scores among the Kaggle competitors are producing much better results.
 
