@@ -279,10 +279,25 @@ Each refinement run of the model used a randomized testing set, so another full 
 Generally speaking, it does not seem that the results from this model can be trusted. While the parameters and model seem reasonable on the surface, the results are not what should be expected. A score of 2.16 shows a fairly large degree of variability. The best scores among the Kaggle competitors are producing much better results.
 
 ### Justification
-In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
-- _Are the final results found stronger than the benchmark result reported earlier?_
-- _Have you thoroughly analyzed and discussed the final solution?_
-- _Is the final solution significant enough to have solved the problem?_
+Recalling the benchmark test used at the beginning, a Linear Regression of the dataset produced a final score of **1.6401099366269307**. Using a Decision Tree with a number of rounds of tuning, the final model produced a score of **2.1607568160810113**. The results of the Decision Tree are clearly weaker than the Linear Regression.
+
+To further investigate, a Decision Tree regression was run against the same basic data used for the Linear Regression model. The following grid search parameters were used:
+
+* max_depth: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+* min_samples_split: [2, 3, 4]
+* max_features: [1, 2, 3, 4]
+
+The results were:
+* max_depth: 10
+* min_samples_split: 3
+* max_features: 2
+
+The final score of this test was **2.4901160573631285**
+
+Clearly the Decision Tree regressor produces inferior results to a basic linear regression, whether using the same data or an expanded set of data. With the same data this makes a certain amount of sense, given that only budget, popularity, and runtime are being considered. As decision points these are fairly weak whereas the Linear Regression readily produces a well-defined prediction line between budget and revenue, as illustrated earlier.
+
+While a wider dataset produces more accurate results for the Decision Tree due to richer decision points (cast, director, genre, etc) it is still not delivering an acceptable level of accuracy for predictions.
+
 
 
 ## V. Conclusion
