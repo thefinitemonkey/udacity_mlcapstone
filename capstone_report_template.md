@@ -333,10 +333,12 @@ The hardest part in the end though was acknowleding that the Decision Tree model
 
 
 ### Improvement
-In this section, you will need to provide discussion as to how one aspect of the implementation you designed could be improved. As an example, consider ways your implementation can be made more general, and what would need to be modified. You do not need to make this improvement, but the potential solutions resulting from these changes are considered and compared/contrasted to your current solution. Questions to ask yourself when writing this section:
-- _Are there further improvements that could be made on the algorithms or techniques you used in this project?_
-- _Were there algorithms or techniques you researched that you did not know how to implement, but would consider using if you knew how?_
-- _If you used your final solution as the new benchmark, do you think an even better solution exists?_
+
+One possible solution to gain better results from this model centers on the insights derived from the graph shown in the free-form visualization above. While the decision points provided by adding data like directors, actors, keywords and the like is rich, it is also extremely noisy. There are many directors, actors, production companies and so forth that are only ever associated with a single film. Or perhaps only a single film in a given genre. Or any one of a number of other combinations.
+
+Cleaning up some of this noise could be achieved by reducing the number of items being considered. Only directors that have been part of more than X number of movies for instance. The same with actors, production companies, etc. Then putting all others under an "other" category. Those individuals that are part of more than one film are generally so because they are successful, and so would provide better decision points for predictions. Those who are less so being grouped as "other" might represent lower success rates.
+
+Another improvement that could be considered is adjusting budgets and revenues for inflation based on release dates. Given that we are making predictions of films against each other, even where the same cast, director, genre and series may be involved (i.e. Star Wars) the difference in years produced make a significant difference in terms of revenue based on difference in ticket prices. A movie ticket costing $3-$4 in the mid 1970s has an average of $10 today. Flattening this data, then modeling predictions and calculating inflation-adjusted results by year would certainly reduce an aspect of noise.
 
 -----------
 
