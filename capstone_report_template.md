@@ -266,17 +266,17 @@ Yielded results of:
 * max_features = 8750
 * score = **2.1607568160810113**
 
-The min_samples_split had quickly settled in at 64, while max_depth and max_features continued to drive incremental improvements as they were allowed to grow until Test 5. With the parameters in Test 5 the score became worse, which is unexpected and requires more investigation to verify.
+The min_samples_split had quickly settled in at 64, while max_depth and max_features continued to drive incremental improvements as they were allowed to grow until Test 5.
 
 ## IV. Results
 _(approx. 2-3 pages)_
 
 ### Model Evaluation and Validation
-In this section, the final model and any supporting qualities should be evaluated in detail. It should be clear how the final model was derived and why this model was chosen. In addition, some type of analysis should be used to validate the robustness of this model and its solution, such as manipulating the input data or environment to see how the model’s solution is affected (this is called sensitivity analysis). Questions to ask yourself when writing this section:
-- _Is the final model reasonable and aligning with solution expectations? Are the final parameters of the model appropriate?_
-- _Has the final model been tested with various inputs to evaluate whether the model generalizes well to unseen data?_
-- _Is the model robust enough for the problem? Do small perturbations (changes) in training data or the input space greatly affect the results?_
-- _Can results found from the model be trusted?_
+Refinements stopped at Test 5. While additional refinement may be possible, that the score increased slightly at this point is an indication that the sensitivity had reached a point that changes in the training data were beginning to reflect in the score. This was illustrated by the score ticking up slightly. The parameters seem appropriate for the number of columns in the dataset.
+
+Each refinement run of the model used a randomized testing set, so another full run of Test 5 was performed and resulted in a score of **score**, further validating the perturbations caused by the training data.
+
+Generally speaking, it does not seem that the results from this model can be trusted. While the parameters and model seem reasonable on the surface, the results are not what should be expected. A score of 2.16 shows a fairly large degree of variability. The best scores among the Kaggle competitors are producing much better results.
 
 ### Justification
 In this section, your model’s final solution and its results should be compared to the benchmark you established earlier in the project using some type of statistical analysis. You should also justify whether these results and the solution are significant enough to have solved the problem posed in the project. Questions to ask yourself when writing this section:
